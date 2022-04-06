@@ -28,9 +28,9 @@ Route::get('/class', function(Request $request){
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::redirect('/','/intro');
@@ -71,11 +71,24 @@ Route::get('/user/{user}', function(User $user){
 });
 
 
-Route::fallback(function(){
-    return 'No available page';
-}); 
+// Route::fallback(function(){
+//     return 'No available page';
+// }); 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/', [App\Http\Controllers\PageController::class, 'index']);
+Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/check-request', [App\Http\Controllers\PageController::class, 'checkRequest']);
+
+Route::get('/contact-us', [App\Http\Controllers\PageController::class, 'showContactPage']);
+Route::post('/contacts', [App\Http\Controllers\PageController::class,  'storeContacts']);
+
+// Route::get('/posts', [App\Http\Controllers\PostController::class,'index']);
+// Route::get('/posts/{post}', [App\Http\Controllers\PostController::class,'post']);
+
+Route::resource('/posts', App\Http\Controllers\PostController::class);
+
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
