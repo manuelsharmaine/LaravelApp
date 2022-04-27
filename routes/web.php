@@ -92,3 +92,7 @@ Route::post('/contacts', [App\Http\Controllers\PageController::class,  'storeCon
 Route::resource('/posts', App\Http\Controllers\PostController::class);
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
+
+Route::prefix('admin')->group(function(){
+    Route::resource('/posts', App\Http\Controllers\Admin\PostController::class);
+});
