@@ -94,5 +94,6 @@ Route::resource('/posts', App\Http\Controllers\PostController::class);
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
 
 Route::prefix('admin')->group(function(){
+    Route::post('/share-post/{id}', [ App\Http\Controllers\Admin\PostController::class, 'sharePost']);
     Route::resource('/posts', App\Http\Controllers\Admin\PostController::class);
 });
